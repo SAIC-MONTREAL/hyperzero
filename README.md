@@ -1,7 +1,14 @@
 # Hypernetworks for Zero-shot Transfer in Reinforcement Learning
-Author's PyTorch implementation of HyperZero. If you use our code, please cite our AAAI 2023 paper:
+Author's PyTorch implementation of HyperZero. If you use our code, please cite our [AAAI 2023 paper](https://arxiv.org/abs/2211.15457):
 
-["Hypernetworks for Zero-shot Transfer in Reinforcement Learning". Sahand Rezaei-Shoshtari, Charlotte Morissette, Francois R. Hogan, Gregory Dudek, and David Meger. In Thirty-Seventh AAAI Conference on Artificial Intelligence. 2023.](https://arxiv.org/abs/2211.15457)
+```bib
+@article{rezaei2022hypernetworks,
+  title={Hypernetworks for Zero-shot Transfer in Reinforcement Learning},
+  author={Rezaei-Shoshtari, Sahand and Morissette, Charlotte and Hogan, Francois Robert and Dudek, Gregory and Meger, David},
+  journal={arXiv preprint arXiv:2211.15457},
+  year={2022}
+}
+```
 
 ## Setup
 * We recommend using a conda virtual environment to run the code.
@@ -60,14 +67,4 @@ python train_rl_regressor.py rollout_dir=<path-to-npy-logs> domain_task=cheetah_
 loads several RL regressors and evaluates them:
 ```commandline
 python eval_many_approximators.py --rootdir <path-to-the-root-dir-of-RL-runs> --approximator_rootdir <path-to-the-trained-approximators> --rollout_dir <path-to-npy-logs> --domain_task cheetah_run
-```
-
-## Citation
-```bib
-@article{rezaei2022hypernetworks,
-  title={Hypernetworks for Zero-shot Transfer in Reinforcement Learning},
-  author={Rezaei-Shoshtari, Sahand and Morissette, Charlotte and Hogan, Francois Robert and Dudek, Gregory and Meger, David},
-  journal={arXiv preprint arXiv:2211.15457},
-  year={2022}
-}
 ```
