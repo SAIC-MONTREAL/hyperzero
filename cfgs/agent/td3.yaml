@@ -1,0 +1,14 @@
+agent_name: td3
+
+agent:
+  _target_: agents.td3.TD3Agent
+  obs_shape: ??? # to be specified later
+  action_shape: ??? # to be specified later
+  device: ${device}
+  lr: ${lr}
+  critic_target_tau: 0.01
+  update_every_steps: 2
+  num_expl_steps: 2000
+  hidden_dim: 256
+  stddev_schedule: ${stddev_schedule}
+  stddev_clip: 0.3

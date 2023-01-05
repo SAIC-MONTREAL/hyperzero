@@ -1,0 +1,5 @@
+dynamics_parameters:
+  use_default: false
+  length: 0.16
+
+dynamics_name: dyn_${dynamics_parameters.length}

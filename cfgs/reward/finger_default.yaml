@@ -1,0 +1,8 @@
+reward_parameters:
+  spin:
+    bounds: [15, .inf]
+    margin: 15
+    value_at_margin: 0
+    sigmoid: linear
+
+reward_name: default
