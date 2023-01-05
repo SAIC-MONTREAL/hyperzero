@@ -1,0 +1,50 @@
+defaults:
+  - _self_
+  - approximator@_global_: mlp_policy
+  - override hydra/launcher: submitit_local
+
+# dataset dir
+rollout_dir: ~/workspace/hyperzero_private/rollout_data
+domain_task: cheetah_run
+# train settings
+num_train_epochs: 500
+batch_size: 512
+test_fraction: 0.2
+# save
+save_every_frames: 20
+# snapshot
+save_snapshot: true
+# misc
+seed: 2
+device: cuda
+# experiment
+experiment: ''
+# approximator
+input_to_model: 'rew'     # options: 'rew', 'dyn', 'rew_dyn'
+noise_clip: 0.02
+value_weight: 0.01
+td_weight: 0.01
+hidden_dim: 256
+embed_dim: 256
+k_shot: 10
+adaptation_steps: 5
+
+hydra:
+  job:
+    chdir: True
+  run:
+    dir: ./results_approximator/${input_to_model}/seed_${seed}/${domain_task}/${domain_task}_${approximator_name}_${input_to_model}_seed_${seed}_${experiment}_${now:%Y.%m.%d-%H-%M-%S}/
+  sweep:
+    dir: ./results_approximator/${input_to_model}/seed_${seed}/${domain_task}/${domain_task}_${approximator_name}_${input_to_model}_seed_${seed}_${experiment}_${now:%Y.%m.%d-%H-%M-%S}/
+    subdir: ${hydra.job.num}
+  sweeper:
+    params:
+      approximator@_global_: mlp_policy,mlp_rl,mlp_rl_td,hyperzero,hyperzero_without_q,hyperzero_without_td,meta_policy
+  launcher:
+    timeout_min: 4300
+    cpus_per_task: 10
+    gpus_per_node: 8
+    tasks_per_node: 1
+    mem_gb: 64
+    nodes: 1
+    submitit_folder: ./results_approximator_multirun/${input_to_model}/seed_${seed}/${domain_task}/${domain_task}_${approximator_name}_${input_to_model}_seed_${seed}_${experiment}_${now:%Y.%m.%d-%H-%M-%S}/

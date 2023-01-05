@@ -1,0 +1,4 @@
+dynamics_parameters:
+  use_default: true
+
+dynamics_name: dyn_default

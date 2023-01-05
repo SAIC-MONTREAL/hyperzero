@@ -1,0 +1,7 @@
+dynamics_parameters:
+  use_default: false
+  mass: 0.1
+  size: 0.045
+  length: 1
+
+dynamics_name: dyn_${dynamics_parameters.mass}_${dynamics_parameters.size}_${dynamics_parameters.length}

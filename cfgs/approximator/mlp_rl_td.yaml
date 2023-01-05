@@ -1,0 +1,17 @@
+approximator_name: mlp_rl_td
+
+approximator:
+  _target_: approximators.rl_solution.RLApproximator
+  model: mlp
+  input_dim: ??? # to be specified later
+  state_dim: ??? # to be specified later
+  action_dim: ??? # to be specified later
+  device: ${device}
+  lr: 0.0001
+  hidden_dim: ${hidden_dim}
+  embed_dim: ${embed_dim}
+  use_td: true
+  use_clipped_noise: false
+  noise_clip: ${noise_clip}
+  value_weight: ${value_weight}
+  td_weight: ${td_weight}

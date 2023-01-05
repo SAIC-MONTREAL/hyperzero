@@ -1,0 +1,8 @@
+reward_parameters:
+  speed:
+    bounds: [10, .inf]
+    margin: 10
+    value_at_margin: 0
+    sigmoid: linear
+
+reward_name: default

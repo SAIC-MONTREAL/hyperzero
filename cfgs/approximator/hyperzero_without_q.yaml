@@ -1,0 +1,14 @@
+approximator_name: hyperzero_without_q
+
+approximator:
+  _target_: approximators.policy.PolicyApproximator
+  model: hyper
+  input_dim: ??? # to be specified later
+  state_dim: ??? # to be specified later
+  action_dim: ??? # to be specified later
+  device: ${device}
+  lr: 0.0001
+  hidden_dim: ${hidden_dim}
+  embed_dim: ${embed_dim}
+  use_clipped_noise: false
+  noise_clip: ${noise_clip}

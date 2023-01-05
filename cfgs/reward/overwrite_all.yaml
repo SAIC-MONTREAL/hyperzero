@@ -1,0 +1,7 @@
+reward_parameters:
+  ALL:
+    sigmoid: gaussian
+    margin: 1
+    value_at_margin: 0.1
+
+reward_name: overwrite_all-${reward_parameters.ALL.sigmoid}-${reward_parameters.ALL.margin}

@@ -1,0 +1,7 @@
+reward_parameters:
+  horizontal_velocity:
+    sigmoid: linear
+    margin: 0
+    value_at_margin: 0.1
+
+reward_name: default

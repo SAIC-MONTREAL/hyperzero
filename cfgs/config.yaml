@@ -1,0 +1,57 @@
+defaults:
+  - _self_
+  - task@_global_: cheetah_run
+  - obs@_global_: states
+  - agent@_global_: td3
+  - reward@_global_: cheetah_default
+  - dynamics@_global_: default
+  - override hydra/launcher: submitit_local
+
+# task settings
+discount: 0.99
+# train settings
+num_seed_frames: 4000
+# eval
+eval_every_frames: 10000
+num_eval_episodes: 10
+# plot
+plot_every_frames: 100000
+# save
+save_every_frames: 100000
+# snapshot
+save_snapshot: true
+# replay buffer
+replay_buffer_size: 1000000
+replay_buffer_num_workers: 4
+nstep: 1
+batch_size: 256
+# misc
+seed: 2
+device: cuda
+save_video: true
+save_train_video: false
+# experiment
+experiment: ''
+# agent
+lr: 1e-4
+feature_dim: 50
+
+hydra:
+  job:
+    chdir: True
+  run:
+    dir: ./results/${now:%Y.%m.%d}/${task_name}_${agent_name}_seed_${seed}_${reward_name}_${dynamics_name}_${experiment}_${now:%H-%M-%S}/
+  sweep:
+    dir: ./results/${now:%Y.%m.%d}/${task_name}_${agent_name}_seed_${seed}_${reward_name}_${dynamics_name}_${experiment}_${now:%H-%M-%S}/
+    subdir: ${hydra.job.num}
+#  sweeper:
+#    params:
+#      reward_parameters.ALL.margin: range(0.2,3.1,0.2)
+  launcher:
+    timeout_min: 4300
+    cpus_per_task: 10
+    gpus_per_node: 8
+    tasks_per_node: 1
+    mem_gb: 64
+    nodes: 1
+    submitit_folder: ./results_multirun/${now:%Y.%m.%d}/${task_name}_${agent_name}_seed_${seed}_${reward_name}_${experiment}_${now:%H-%M-%S}/

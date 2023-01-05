@@ -1,0 +1,15 @@
+reward_parameters:
+  centered:
+    sigmoid: gaussian
+    margin: 2
+    value_at_margin: 0.1
+  small_control:
+    sigmoid: quadratic
+    margin: 1
+    value_at_margin: 0
+  small_velocity:
+    sigmoid: gaussian
+    margin: 5
+    value_at_margin: 0.1
+
+reward_name: default_${reward_parameters.centered.margin}_${reward_parameters.small_velocity.margin}_${reward_parameters.small_control.margin}
