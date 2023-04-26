@@ -26,7 +26,15 @@ pip install -r requirements.txt
 ```
 
 ## Instructions
-### Training RL Agents
+The training of HyperZero is done in two steps:
+1. Obtaining the near-optimal rollout dataset 
+   1. First option is to train the RL agents yourself and then collect the rollouts. 
+   2. Second option is to use our published dataset.
+2. Training HyperZero on the dataset.
+
+### Step 1: Obtaining the Near-optimal Rollout Dataset 
+
+#### Option A: Training RL Agents
 * To train standard RL on a [Contextual Control Suite](https://github.com/SAIC-MONTREAL/contextual-control-suite) environment with default reward and dynamics parameters, use:
 ```commandline
 python train.py agent@_global_=td3 task@_global_=cheetah_run reward@_global_=cheetah_default dynamics@_global_=default
@@ -44,7 +52,6 @@ python train.py --multirun agent@_global_=td3 task@_global_=cheetah_run reward@_
 ```
 * **Note:** Be mindful! These commands launch a lot of training scripts! 
 
-### Evaluating and Rolling Out Trained RL Agents
 * To evaluate the RL agents and generate the dataset used for training hyperzero, you can use [eval.py](eval.py). 
 A helper script is set up to load each trained RL agent and generates a set of `.npy` files to be later loaded 
 by [RLSolutionDataset](utils/dataset.py):
@@ -52,7 +59,13 @@ by [RLSolutionDataset](utils/dataset.py):
 python eval_many_agents.py --rootdir <path-to-the-root-dir-of-RL-runs> --domain_task cheetah_run
 ```
 
-### Training HyperZero
+#### Option B: Using the Published Dataset
+* Instead of training RL agents, you can download our published dataset from 
+[here](https://mcgill-my.sharepoint.com/:f:/g/personal/sahand_rezaei-shoshtari_mail_mcgill_ca/EhDgTXh3v-pIhTHZXM1xaz0BMWT-N8jNheVm2156mhbZdA?e=hMu4N1). 
+This dataset was used to generate some of the results in our [AAAI 2023 paper](https://arxiv.org/abs/2211.15457).
+* Simply extract the dataset in the desired location and proceed to Step 2.
+
+### Step 2: Training HyperZero
 * Finally, to train hyperzero (or the baselines), use the following command. It trains and saves the RL regressor:
 ```commandline
 python train_rl_regressor.py rollout_dir=<path-to-npy-logs> domain_task=cheetah_run approximator@_global_=hyperzero input_to_model=rew
