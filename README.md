@@ -28,8 +28,8 @@ pip install -r requirements.txt
 ## Instructions
 The training of HyperZero is done in two steps:
 1. Obtaining the near-optimal rollout dataset 
-   1. First option is to train the RL agents yourself and then collect the rollouts. 
-   2. Second option is to use our published dataset.
+   1. [First option](https://github.com/SAIC-MONTREAL/hyperzero#option-a-training-rl-agents) is to train the RL agents yourself and then collect the rollouts. 
+   2. [Second option](https://github.com/SAIC-MONTREAL/hyperzero#option-b-using-the-published-dataset) is to use our published dataset.
 2. Training HyperZero on the dataset.
 
 ### Step 1: Obtaining the Near-optimal Rollout Dataset 
